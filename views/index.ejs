@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="#">
+  <title>BREAD-JQUERY</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+    integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+    crossorigin="anonymous"></script>
+</head>
+
+<body id="body">
+  <ul class="container" style="margin-top: 30px;">
+    <h1>BREAD (Browse, Read, Edit, Add, Delete)</h1>
+    <h4>Filters</h4>
+    <form id='search-data'>
+      <div class="form-group row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">
+          <input type="checkbox" id="checked_id" name="checked_id" value="true"> ID
+        </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputId" name="id" placeholder="ID">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputString" class="col-sm-2 col-form-label">
+          <input type="checkbox" id="checked_string" name="checked_string" value="true"> String
+        </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputString" name="string" placeholder="String">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputInteger" class="col-sm-2 col-form-label">
+          <input type="checkbox" id="checked_integer" name="checked_integer" value="true"> Integer
+        </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputInteger" name="integer" placeholder="Integer">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputFloat" class="col-sm-2 col-form-label">
+          <input type="checkbox" id="checked_float" name="checked_float" value="true"> Float
+        </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputFloat" name="float" placeholder="Float">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputDate" class="col-sm-2 col-form-label">
+          <input type="checkbox" id="checked_date_from" name="checked_date" value="true"> Date
+        </label>
+        <div class="col-sm-10">
+          <input type="date" class="form-control" id="inputDate" name="start_date" placeholder="Start date">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputDate" class="col-sm-2 col-form-label"> </label>
+        <div class="col-sm-10">
+          to
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputDate" class="col-sm-2 col-form-label"> </label>
+        <div class="col-sm-10">
+          <input type="date" class="form-control" id="inputDate" name="start_date" placeholder="End date">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="selectBoolean" class="col-sm-2 col-form-label">
+          <input type="checkbox" id="checked_boolean" name="checked_boolean" value="true"> Boolean
+        </label>
+        <div class="col-sm-10">
+          <select class="form-control" name="boolean">
+            <option>Choose the boolean ...</option>
+            <option value="1">True</option>
+            <option value="0">False</option>
+          </select>
+        </div>
+      </div>
+      <div><br></div>
+      <button type="submit" class="btn btn-primary search">Search</button>
+      <a href="/" class="btn btn-warning">Reset</a>
+      <div><br></div>
+    </form>
+    <table class="table table-striped" id="table-data">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">String</th>
+          <th scope="col">Integer</th>
+          <th scope="col">Float</th>
+          <th scope="col">Date</th>
+          <th scope="col">Boolean</th>
+          <th scope="col">Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+    <ul class="pagination"></ul>
+    <br>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add</button>
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Data</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form id="data-form">
+            <div class="modal-body">
+              <div class="form-group row">
+                <label for="inputString" class="col-sm-2 col-form-label">String</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="string" id="string" placeholder="String">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputInteger" class="col-sm-2 col-form-label">Integer</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" name="integer" id="integer" placeholder="Integer">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputFloat" class="col-sm-2 col-form-label">Float</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="float" id="float" placeholder="Float">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputDate" class="col-sm-2 col-form-label">Date</label>
+                <div class="col-sm-10">
+                  <input type="date" class="form-control" name="date" id="date" placeholder="End date">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="selectBoolean" class="col-sm-2 col-form-label">Boolean</label>
+                <div class="col-sm-10">
+                  <select class="form-control" name="boolean" id="boolean">
+                    <option>Choose the boolean ...</option>
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <input type="submit" class="btn btn-primary" value="Save" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <body>
+      <script type="text/javascript">
+        const API_URL = "http://localhost:3000/api/index";
+
+        $(document).ready(function () {
+          getData(1)
+          addData()
+          editData()
+
+          $("#table-data tbody").on("click", ".btn-delete", function (e) {
+            if (confirm("Anda Yakin ?")) {
+              deleteData($(this).attr("data-id"));
+            }
+            return false
+          })
+        })
+
+        const getData = (page) => {
+          var url_catch = $(location).attr('search');
+          console.log(url_catch)
+          $.ajax({
+            url: `${API_URL}/${page}/${url_catch}`,
+            type: 'GET',
+            dataType: 'json',
+            // data:{
+            //   id: $("#checked_id").val
+            // }
+          }).done(function (data) {
+            console.log(data)
+            let dataRows = data.data
+            let html = '';
+            dataRows.forEach(item => {
+              html += `
+              <tr>
+                <th scope="row">${item.id}</th>
+                <td>${item.string}</td>
+                <td>${item.integer}</td>
+                <td>${item.float}</td>
+                <td>${item.date}</td>
+                <td>${item.boolean}</td>
+                <td>
+                  <button data-id-edit="${item.id}" type="button" id="edit-btn" class="btn btn-success" data-toggle="modal" data-target="#editModal">Edit</button>
+                  <button data-id="${item.id}" type="submit" id="delete-btn" class="btn btn-danger btn-delete">Delete</button>
+                </td>
+              </tr>`
+            })
+            $('#table-data tbody').html(html)
+
+            let pagePrevious = '';
+            if (data.current == 1) {
+              pagePrevious += `<li class="page-item" disabled><a class="page-link">Previous</a></li>`
+            } else {
+              pagePrevious += `<li class="page-item"><button data-id = "${data.previous_page}" type="button" id="page-btn" class="page-link">Previous</button></li> `
+            }
+            for (let i = 1; i <= data.pages; i++) {
+              if (i == data.current) {
+                pagePrevious += `<li class="page-item active"><button type="button" id="page-btn" class="page-link">${i}</button></li>`
+              } else {
+                pagePrevious += `<li class="page-item"><button data-id = "${i}" type="button" id="page-btn" class="page-link">${i}</button></li>`
+              }
+            }
+            if (data.current == data.pages) {
+              pagePrevious += `<li class="page-item" disabled><a class="page-link">Next</a></li>`
+            } else {
+              pagePrevious += `<li class="page-item"><button data-id = "${data.next_page}" type="button" id="page-btn" class="page-link">Next</button></li>`
+            }
+            $('.pagination').html(pagePrevious)
+            $("ul li").on("click", "#page-btn", function () {
+              const id = $(this).attr('data-id');
+              getData(id);
+            })
+            //--------------------------------- End Pagination ---------------------------------------
+          }).fail(function (jqXHR, textStatus) {
+            alert("Request failed get data: " + textStatus);
+          })
+        }
+
+        const addData = () => {
+          $('#data-form').on('submit', (e) => {
+            e.preventDefault();
+            let string = $('#string').val();
+            let integer = $('#integer').val();
+            let float = $('#float').val();
+            let date = $('#date').val();
+            let boolean = $('#boolean').val();
+            $.ajax({
+              url: `${API_URL}/add`,
+              method: 'POST',
+              data: {
+                string: string,
+                integer: integer,
+                float: float,
+                date: date,
+                boolean: boolean
+              }
+            }).done(function () {
+              alert("Berhasil")
+              getData()
+            }).fail(function (jqXHR, textStatus) {
+              alert(textStatus)
+            })
+          })
+        }
+
+        const deleteData = (id) => {
+          $.ajax({
+            url: `${API_URL}/delete/${id}`,
+            method: 'DELETE',
+            dataType: 'json'
+          }).done(function () {
+            getData()
+          }).fail(function (jqXHR, textStatus) {
+            alert(textStatus)
+          })
+        }
+
+        const editData = () => {
+          $("table tbody").on("click", "#edit-btn", function () {
+            const id = $(this).attr('data-id-edit');
+            $.ajax({
+              url: `${API_URL}/edit/${id}`,
+              method: 'GET',
+              dataType: 'json'
+            }).done(function (data) {
+              console.log(data)
+              var dataApi = data.data[0];
+              let html = `<div class="container" style="margin-top: 30px;">
+                            <h1>Edit Data</h1>
+                            <form id="data-form-edit">
+                                <div class="form-group row">
+                                    <label for="id" class="col-sm-2 col-form-label">ID</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="id" id="id" value="${dataApi.id}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputString" class="col-sm-2 col-form-label">String</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="string" id="string" value="${dataApi.string}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputInteger" class="col-sm-2 col-form-label">Integer</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" name="integer" id="integer" value="${dataApi.integer}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputFloat" class="col-sm-2 col-form-label">Float</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="float" id="float" value="${dataApi.float}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputDate" class="col-sm-2 col-form-label">Date</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" name="date" id="date" value="${dataApi.date}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="selectBoolean" class="col-sm-2 col-form-label">Boolean</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="boolean" id="boolean">
+                                            <option>Choose the boolean ...</option>
+                                            <option value="true" ${dataApi.boolean == 'true' ? "selected" : ""}>true</option>
+                                            <option value="false" ${dataApi.boolean == 'false' ? "selected" : ""} >false</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                 <a href="/"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></a>
+                                    <input type="submit" class="btn btn-primary" value="Save"/>
+                                </div>
+                            </form>
+                        </div>`
+              $('#body').html(html);
+              $('#data-form-edit').on('submit', (e) => {
+                e.preventDefault();
+                let id = $('#id').val()
+                let string = $('#string').val();
+                let integer = $('#integer').val();
+                let float = $('#float').val();
+                let date = $('#date').val();
+                let boolean = $('#boolean').val();
+                $.ajax({
+                  url: `${API_URL}/edit/${id}`,
+                  method: 'PUT',
+                  data: {
+                    id: id,
+                    string: string,
+                    integer: integer,
+                    float: float,
+                    date: date,
+                    boolean: boolean
+                  }
+                }).done(function () {
+                  window.location.href = "/";
+                }).fail(function (jqXHR, textStatus) {
+                  alert(`Request failed get data: ${textStatus}`);
+                })
+              })
+            }).fail(function (jqXHR, textStatus) {
+              alert(`Request failed get data: ${textStatus}`);
+            })
+          })
+        };
+      </script>
+    </body>
+
+</html>

@@ -1,0 +1,31 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+.ID {
+  border:1px solid #E8EBED;
+  width: 4%;
+  }
+  .String {
+  border:1px solid #E8EBED;
+  }
+  .Integer {
+  border:1px solid #E8EBED;
+  }
+  .Float {
+  border:1px solid #E8EBED;
+  }
+  .Date {
+  border:1px solid #E8EBED;
+  }
+  .Boolean {
+  border:1px solid #E8EBED;
+  }
+  .Actions {
+  border:1px solid #E8EBED;
+  width: 20%;
+  }
