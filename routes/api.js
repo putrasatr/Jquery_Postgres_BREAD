@@ -77,41 +77,27 @@ module.exports = function (pool) {
   });
 
   router.get('/:page', function (req, res, next) {
-    const id = req.query.id
-    const string = req.query.string
-    const integer = req.query.integer
-    const float = req.query.float
-    const start_date = req.query.start_date
-    const end_date = req.query.end_date
-    const boolean = req.query.boolean
-    const checked_id = req.query.checked_id
-    const checked_string = req.query.checked_string
-    const checked_integer = req.query.checked_integer
-    const checked_float = req.query.checkedfloat
-    const checked_date = req.query.id
-    const checked_boolean = req.query.id
-
     const per_page = 3;
     const page = req.params.page || 1;
     const queryObject = url.parse(req.url, true).search;
     let params = [];
-    if (checked_id === "true" && id) {
-      params.push(`id = ${id}`);
+    if (req.query.checked_id === "true" && req.query.id) {
+      params.push(`id = ${req.query.id}`);
     }
-    if (checked_string === "true" && string) {
-      params.push(`string = '${string}'`);
+    if (req.query.checked_string === "true" && req.query.string) {
+      params.push(`string = '${req.query.string}'`);
     }
-    if (checked_integer === "true" && integer) {
-      params.push(`integer = ${integer}`);
+    if (req.query.checked_integer === "true" && req.query.integer) {
+      params.push(`integer = ${req.query.integer}`);
     }
-    if (checked_float === "true" && float) {
-      params.push(`float = ${float}`);
+    if (req.query.checked_float === "true" && req.query.float) {
+      params.push(`float = ${req.query.float}`);
     }
-    if (checked_date === "true" && start_date && end_date) {
-      params.push(`date between '${start_date}' and '${end_date}'`);
+    if (req.query.checkeddate === "true" && req.query.startdate && req.query.enddate) {
+      params.push(`date between '${req.query.startdate}' and '${req.query.enddate}'`);
     }
-    if (checked_boolean === "true" && boolean) {
-      params.push(`boolean = '${boolean}'`);
+    if (req.query.checkedboolean === "true" && req.query.boolean) {
+      params.push(`boolean = '${req.query.boolean}'`);
     }
 
     var sql = `SELECT * FROM users`;
