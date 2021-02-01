@@ -93,6 +93,9 @@
       <a href="/" class="btn btn-warning">Reset</a>
       <div><br></div>
     </form>
+
+
+
     <table class="table table-striped" id="table-data">
       <thead>
         <tr>
@@ -105,7 +108,7 @@
           <th scope="col">Action</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="bodytbl">
 
       </tbody>
     </table>
@@ -188,7 +191,6 @@
 
         const getData = (page) => {
           var url_catch = $(location).attr('search');
-          console.log(url_catch)
           $.ajax({
             url: `${API_URL}/${page}/${url_catch}`,
             type: 'GET',
@@ -197,7 +199,6 @@
             //   id: $("#checked_id").val
             // }
           }).done(function (data) {
-            console.log(data)
             let dataRows = data.data
             let html = '';
             dataRows.forEach(item => {
@@ -215,7 +216,7 @@
                 </td>
               </tr>`
             })
-            $('#table-data tbody').html(html)
+            $('#table-data #bodytbl').html(html)
 
             let pagePrevious = '';
             if (data.current == 1) {
@@ -375,7 +376,11 @@
             })
           })
         };
+
+
       </script>
-    </body>
+  </ul>
+
+</body>
 
 </html>

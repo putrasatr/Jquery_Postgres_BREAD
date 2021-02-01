@@ -64,6 +64,7 @@ module.exports = function (pool) {
       pool.query(sql, (err, data) => {
         if (err) { res.status(400).json({ "error": err.message }); return; }
         // res.json(rowsFilt.rows);
+        console.log(queryObject)
         res.json({
           data: data.rows,
           current: page,
@@ -129,6 +130,7 @@ module.exports = function (pool) {
       });
     })
   });
+  
   router.get('/edit/:id', (req, res) => {
     var sql = `SELECT * FROM users WHERE id = ${Number(req.params.id)}`;
     pool.query(sql, (err, row) => {
