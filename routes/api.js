@@ -125,8 +125,8 @@ module.exports = function (pool) {
           filter: queryObject,
           next_page: parseInt(page) + 1,
           previous_page: parseInt(page) - 1,
-          pages: Math.ceil(rows.rows.length / per_page)
-        });
+            pages: Math.ceil(rows.rows.length / per_page)
+          });
       });
     })
   });

@@ -14,10 +14,6 @@ const pool = new Pool({
   port: 5432,
 })
 
-  // pool.query('select * from users', (err, res) => {
-  //   console.log(res.rows);
-
-  // })
 var indexRouter = require('./routes/index');
 var ApiRoute = require('./routes/api')(pool);
 
